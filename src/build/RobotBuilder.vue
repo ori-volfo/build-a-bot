@@ -137,15 +137,15 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .part {
         position: relative;
         width:165px;
         height:165px;
         border: 3px solid #aaa;
-    }
-    .part img {
-        width:165px;
+        img {
+            width:165px;
+        }
     }
     .top-row {
         display:flex;
