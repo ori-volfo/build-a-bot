@@ -71,6 +71,13 @@
 
     export default {
         name: "RobotBuilder",
+        created(){
+            console.log('Component created');
+        },
+        beforeCreate(){
+            console.log('Before component created');
+
+        },
         data(){
             return {
                 availableParts,
