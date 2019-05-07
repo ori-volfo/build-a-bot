@@ -63,6 +63,14 @@
 
     export default {
         name: "RobotBuilder",
+        beforeRouteLeave(to, from, next){
+            if(this.addedToCart){
+                next(true);
+            } else {
+                const response = confirm('Your robot was not added to cart. Are you sure you wanna leave?');
+                next(response);
+            }
+        },
         components: { PartSelector , CollapsibleSection },
         created(){
             console.log('Component created');
@@ -74,6 +82,7 @@
         data(){
             return {
                 availableParts,
+                addedToCart: false,
                 cart: [],
                 selectedRobot:{
                     head: {},
@@ -96,6 +105,7 @@
                 const robot = this.selectedRobot;
                 const cost = robot.head.cost + robot.leftArm.cost + robot.rightArm.cost + robot.torso.cost + robot.base.cost;
                 this.cart.push(Object.assign({},robot,{cost}));
+                this.addedToCart = true;
             },
         }
     }
