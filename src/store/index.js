@@ -15,8 +15,6 @@ export default new Vuex.Store({
         users: usersModule
     },
     getters: {
-        foo(state){
-            return `root-getter/${state.foo}`;
-        }
+
     }
 });
