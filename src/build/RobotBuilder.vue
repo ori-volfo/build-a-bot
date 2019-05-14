@@ -39,6 +39,7 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
     import createdHookMixin from './created-hook-mixin';
     import PartSelector from './PartSelector.vue';
     import CollapsibleSection from '../shared/CollapsibleSection.vue';
@@ -55,7 +56,7 @@
         },
         components: { PartSelector , CollapsibleSection },
         created(){
-            this.$store.dispatch('robots/getParts');
+            this.getParts();
         },
         beforeCreate(){
             console.log('Before component created');
@@ -85,10 +86,11 @@
             },
         },
         methods:{
+            ...mapActions('robots',['getParts', 'addRobotToCart']),
             addToCart(){
                 const robot = this.selectedRobot;
                 const cost = robot.head.cost + robot.leftArm.cost + robot.rightArm.cost + robot.torso.cost + robot.base.cost;
-                this.$store.dispatch('robots/addRobotToCart', Object.assign({},robot,{cost}) )
+                this.addRobotToCart( Object.assign({},robot,{cost}) )
                     .then( ()=> this.$router.push('/cart'));
                 this.addedToCart = true;
             },
