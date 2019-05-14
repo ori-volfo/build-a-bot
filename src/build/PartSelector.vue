@@ -8,7 +8,6 @@
 </template>
 
 <script>
-    import pinDirective from '../shared/pin-directive.js';
 
     function getPreviousValidIndex(index, length) {
         const deprecatedIndex = index - 1;
@@ -21,7 +20,6 @@
     }
 
     export default {
-        directives: { pin: pinDirective },
         props: {
             parts : {
                 type: Array,
